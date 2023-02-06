@@ -12,6 +12,14 @@ public class BoardPanel extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	private static DeckPanel deckPanel;
+	
+	public BoardPanel() {
+		super.setLayout(null);
+		deckPanel = new DeckPanel(30, 30);
+		add(deckPanel);
+	}
+	
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
