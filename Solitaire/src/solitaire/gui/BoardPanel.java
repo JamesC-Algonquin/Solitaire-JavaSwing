@@ -12,10 +12,14 @@ public class BoardPanel extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	//Panel for deck of cards image
 	private static DeckPanel deckPanel;
+	
 	
 	public BoardPanel() {
 		super.setLayout(null);
+		
+		//Draw deck panel to board
 		deckPanel = new DeckPanel(30, 30);
 		add(deckPanel);
 	}

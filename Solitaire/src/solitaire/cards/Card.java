@@ -23,6 +23,7 @@ public class Card {
 		return suit;
 	}
 	
+	//Default background image for cards
 	public static Image getBackground() {
 		if (back==null) {
 			back = new ImageIcon(Card.class.getResource("/solitaire/gui/cards/backcloud.png")).getImage();

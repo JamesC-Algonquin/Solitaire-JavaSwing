@@ -2,6 +2,7 @@ package solitaire.gui;
 
 import javax.swing.JPanel;
 
+//Abstract panel for all piles of cards
 public abstract class CardPile extends JPanel {
 
 	/**
