@@ -19,7 +19,7 @@ public class BoardPanel extends JPanel {
 	public BoardPanel() {
 		super.setLayout(null);
 		
-		//Draw deck panel to board
+		//Create and draw deck panel to board
 		deckPanel = new DeckPanel(30, 30);
 		add(deckPanel);
 	}
