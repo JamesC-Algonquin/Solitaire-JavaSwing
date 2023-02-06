@@ -1,4 +1,4 @@
-package cards;
+package solitaire.cards;
 
 public class Deck {
 	
