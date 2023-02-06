@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 import solitaire.cards.Card;
+import solitaire.cards.Deck;
 
 public class DeckPanel extends CardPile {
 
@@ -12,10 +13,14 @@ public class DeckPanel extends CardPile {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	private Deck deck;
 
 	public DeckPanel(int x, int y) {
 		super(x, y);
 		super.setSize(90, 135);
+		
+		deck = new Deck();
 		
 	}
 
@@ -25,10 +30,12 @@ public class DeckPanel extends CardPile {
 		
 		//Draw 2d image to the panel
 		Graphics2D g2d = (Graphics2D) g;
-		g2d.drawRect(0, 0, this.getWidth(), this.getHeight());
-		g2d.setColor(Color.WHITE);
+		g2d.setColor(new Color(0, 103, 0));
+		g2d.fillRect(0, 0, this.getWidth(), this.getHeight());
 		
-		g2d.drawImage(Card.getBackground(), 0, 0, this.getWidth(), this.getHeight(), this);
+		if(!deck.isEmpty()) {
+			g2d.drawImage(Card.getBackground(), 0, 0, this.getWidth(), this.getHeight(), this);
+		}
 	}
 	
 	
