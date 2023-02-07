@@ -24,7 +24,7 @@ public class TableauPile extends CardPile {
 	
 	public void dealCards(int index, Deck d) {
 		for(int i = 1; i <= index; i++) {
-			deck.push(d.cardPop());
+			deck.push(d.pop());
 			if (i == index) {
 				deck.top().flip();
 			}

@@ -1,5 +1,6 @@
 package solitaire.cards;
 
+import java.util.Collections;
 import java.util.EmptyStackException;
 import java.util.Stack;
 
@@ -7,10 +8,6 @@ public class Deck {
 	
 	public static final String[] suits = {"h", "d", "s", "c"};
 	protected Stack<Card> cards = new Stack<Card>();
-	
-	public Deck() {
-		
-	}
 	
 	public Stack<Card> getStack(){
 		return cards;
@@ -24,11 +21,15 @@ public class Deck {
 		}
 	}
 	
+	public void shuffle() {
+		Collections.shuffle(cards);
+	}
+	
 	public boolean isEmpty() {
 		return (cards.isEmpty());
 	}
 	
-	public Card cardPop() {
+	public Card pop() {
 		try {
 		return cards.pop();
 		}

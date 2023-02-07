@@ -41,6 +41,8 @@ public class BoardPanel extends JPanel {
 				deckPile = new DeckPile(30, 30);
 				//populate deck of cards
 				deckPile.getDeck().populate();
+				//shuffle the deck
+				deckPile.getDeck().shuffle();
 				add(deckPile);
 				
 				wastePile = new WastePile(150, 30);
