@@ -41,6 +41,10 @@ public class Deck {
 		cards.push(c);
 	}
 	
+	public Card top() {
+		return cards.peek();
+	}
+	
 	
 	
 	

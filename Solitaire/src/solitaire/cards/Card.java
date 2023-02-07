@@ -9,11 +9,21 @@ public class Card {
 	private int value;
 	private String suit;
 	private Image face;
+	private boolean faceUp;
 	private static Image back;
 	
 	public Card(int v, String s) {
 		value = v;
 		suit = s;
+		faceUp = false;
+	}
+	
+	public boolean isFaceUp() {
+		return faceUp;
+	}
+	
+	public void flip() {
+		faceUp = !faceUp;
 	}
 
 	public int getValue() {

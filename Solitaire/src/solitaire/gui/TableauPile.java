@@ -25,6 +25,9 @@ public class TableauPile extends CardPile {
 	public void dealCards(int index, Deck d) {
 		for(int i = 1; i <= index; i++) {
 			deck.push(d.cardPop());
+			if (i == index) {
+				deck.top().flip();
+			}
 		}
 	}
 
@@ -42,7 +45,12 @@ public class TableauPile extends CardPile {
 		if(!deck.isEmpty()) {
 			int offset = 0;
 			for (Card c : deck.getStack()) {
-				g.drawImage(Card.getBackground(), 0, offset, 90, 135, this);
+				if(c.isFaceUp()) {
+					g.drawImage(c.getFace(), 0, offset, 90, 135, this);
+				}
+				else {
+					g.drawImage(Card.getBackground(), 0, offset, 90, 135, this);
+				}
 				offset += 20;
 			}
 		}
