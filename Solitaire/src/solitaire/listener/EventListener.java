@@ -9,6 +9,10 @@ public class EventListener {
 	public void wastePile(BoardPanel game) {
 		Deck waste = game.getWastePile().getDeck();
 		
+		if (waste.isEmpty()) {
+			return;
+		}
+		
 		for (FoundationPile foundation : game.getFoundationPiles()) {
 			if (foundation.getSuit() == waste.top().getSuit()) {
 				if(foundation.getDeck().isEmpty() && waste.top().getValue() == 1) {
