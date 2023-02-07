@@ -5,7 +5,7 @@ import java.util.Stack;
 public class Deck {
 	
 	public static final String[] suits = {"h", "d", "s", "c"};
-	public Stack<Card> cards = new Stack<Card>();
+	private Stack<Card> cards = new Stack<Card>();
 	
 	public Deck() {
 		for (String s : suits) {
@@ -17,6 +17,15 @@ public class Deck {
 	
 	public boolean isEmpty() {
 		return (cards.isEmpty());
+	}
+	
+	public Card cardPop() {
+		try {
+		return cards.pop();
+		}
+		catch(NullPointerException e) {
+			return null;
+		}
 	}
 	
 	

@@ -11,8 +11,6 @@ public class DeckPile extends CardPile {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	private Deck deck;
 
 	public DeckPile(int x, int y) {
 		super(x, y);
