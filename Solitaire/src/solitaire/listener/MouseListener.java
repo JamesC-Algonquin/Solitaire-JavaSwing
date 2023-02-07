@@ -5,7 +5,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import solitaire.cards.Card;
-import solitaire.cards.Deck;
 import solitaire.gui.BoardPanel;
 import solitaire.gui.CardPile;
 import solitaire.gui.DeckPile;
