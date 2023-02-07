@@ -17,6 +17,7 @@ public class BoardPanel extends JPanel {
 	private DeckPile deckPile;
 	private WastePile wastePile;
 	private FoundationPile[] foundationPiles;
+	private TableauPile[] tableauPiles;
 	
 	
 	public BoardPanel() {
@@ -26,13 +27,20 @@ public class BoardPanel extends JPanel {
 		deckPile = new DeckPile(30, 30);
 		add(deckPile);
 		
-		wastePile = new WastePile(170, 30);
+		wastePile = new WastePile(150, 30);
 		add(wastePile);
 		
 		foundationPiles = new FoundationPile[4];
 		for(int i = 0; i < foundationPiles.length; i++) {
-			foundationPiles[i] = new FoundationPile(380 + 120 * i, 30, Deck.suits[i]);
+			foundationPiles[i] = new FoundationPile(390 + 120 * i, 30, Deck.suits[i]);
 			add(foundationPiles[i]);
+		}
+		
+		tableauPiles = new TableauPile[7];
+		for(int i = 0; i < tableauPiles.length; i++) {
+			tableauPiles[i] = new TableauPile(30 + 120 * i, 220);
+			add(tableauPiles[i]);
+			
 		}
 	}
 	
