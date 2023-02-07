@@ -5,6 +5,9 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
+import solitaire.cards.Deck;
+import solitaire.listener.MouseListener;
+
 public class BoardPanel extends JPanel {
 
 	/**
@@ -12,16 +15,56 @@ public class BoardPanel extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	//Panel for deck of cards image
-	private static DeckPanel deckPanel;
+	private DeckPile deckPile;
+	private WastePile wastePile;
+	private FoundationPile[] foundationPiles;
+	private TableauPile[] tableauPiles;
 	
 	
 	public BoardPanel() {
 		super.setLayout(null);
 		
+		//Draw table elements
+		drawTable();
+		//Deal cards to tableau piles
+		dealCards();
+		
+		MouseListener listener = new MouseListener(this);
+		addMouseListener(listener);
+		addMouseMotionListener(listener);
+	}
+	
+	public void dealCards() {
+		//deal Appropriate number of cards for each tableau
+		for (int i = 0; i < tableauPiles.length; i++ ) {
+			tableauPiles[i].dealCards(i + 1, deckPile.getDeck());
+		}
+	}
+	
+	public void drawTable() {
 		//Create and draw deck panel to board
-		deckPanel = new DeckPanel(30, 30);
-		add(deckPanel);
+				deckPile = new DeckPile(30, 30);
+				//populate deck of cards
+				deckPile.getDeck().populate();
+				//shuffle the deck
+				deckPile.getDeck().shuffle();
+				add(deckPile);
+				
+				wastePile = new WastePile(150, 30);
+				add(wastePile);
+				
+				foundationPiles = new FoundationPile[4];
+				for(int i = 0; i < foundationPiles.length; i++) {
+					foundationPiles[i] = new FoundationPile(390 + 120 * i, 30, Deck.suits[i]);
+					add(foundationPiles[i]);
+				}
+				
+				tableauPiles = new TableauPile[7];
+				for(int i = 0; i < tableauPiles.length; i++) {
+					tableauPiles[i] = new TableauPile(30 + 120 * i, 220);
+					add(tableauPiles[i]);
+					
+				}
 	}
 	
 	@Override
@@ -33,4 +76,26 @@ public class BoardPanel extends JPanel {
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
 	}
 
+	
+	public DeckPile getDeckPile() {
+		return deckPile;
+	}
+	
+
+	public WastePile getWastePile() {
+		return wastePile;
+	}
+	
+	
+	public FoundationPile[] getFoundationPiles() {
+		return foundationPiles;
+	}
+
+
+	public TableauPile[] getTableauPiles() {
+		return tableauPiles;
+	}
+
+	
+	
 }

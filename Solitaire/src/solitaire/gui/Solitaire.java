@@ -11,7 +11,7 @@ public class Solitaire extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
 	//Hard-coded initial resolution.
-	public static final int WIDTH = 900, HEIGHT = 600;
+	public static final int WIDTH = 900, HEIGHT = 750;
 	
 	//Window background/game board for cards
 	private BoardPanel gameBoard;
@@ -22,11 +22,12 @@ public class Solitaire extends JFrame {
 		
 		//Default close operation ends program
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setMinimumSize(new Dimension(WIDTH, HEIGHT));
 		
 		//Create new board to fill window, set size
 		gameBoard = new BoardPanel();
-		gameBoard.setPreferredSize(new Dimension(WIDTH, HEIGHT));
-		
+		gameBoard.setSize(new Dimension(WIDTH, HEIGHT));
+				
 		//Add to window
 		add(gameBoard);
 		
