@@ -41,6 +41,9 @@ public class MouseListener extends MouseAdapter {
 		if (pressed instanceof TableauPile) {
 			selectedPile = (TableauPile) pressed;
 			selectedCard = ((TableauPile) selectedPile).getSelectedCard(e.getY() - 220);
+			if (selectedCard == selectedPile.getDeck().top()) {
+				event.tableauToFoundation(game, selectedPile);
+			}
 		}
 		
 		e.getComponent().repaint();

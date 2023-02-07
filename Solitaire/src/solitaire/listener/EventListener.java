@@ -5,6 +5,7 @@ import java.util.Stack;
 import solitaire.cards.Card;
 import solitaire.cards.Deck;
 import solitaire.gui.BoardPanel;
+import solitaire.gui.CardPile;
 import solitaire.gui.FoundationPile;
 import solitaire.gui.TableauPile;
 
@@ -99,6 +100,25 @@ public class EventListener {
 			}
 		}
 		
+	}
+
+	public void tableauToFoundation(BoardPanel game, CardPile selectedPile) {
+		Deck tableau = selectedPile.getDeck();
+		
+		for (FoundationPile foundation : game.getFoundationPiles()) {
+			if (!tableau.isEmpty() && foundation.getSuit() == tableau.top().getSuit()) {
+				if(foundation.getDeck().isEmpty() && tableau.top().getValue() == 1) {
+					foundation.getDeck().push(tableau.pop());
+				}
+				else if(!foundation.getDeck().isEmpty() && foundation.getDeck().top().getValue() == tableau.top().getValue() - 1) {
+					foundation.getDeck().push(tableau.pop());
+				}
+			}
+		}
+		
+		if (!tableau.isEmpty() && !tableau.top().isFaceUp()) {
+			tableau.top().flip();
+		}
 	}
 
 
