@@ -1,4 +1,4 @@
-package solitaire.eventlistener;
+package solitaire.listener;
 
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
@@ -7,13 +7,16 @@ import java.awt.event.MouseEvent;
 import solitaire.cards.Deck;
 import solitaire.gui.BoardPanel;
 import solitaire.gui.DeckPile;
+import solitaire.gui.WastePile;
 
 public class MouseListener extends MouseAdapter {
 	
 	private BoardPanel game;
+	private EventListener event;
 	
 	public MouseListener(BoardPanel b) {
 		game = b;
+		event = new EventListener();
 	}
 
 	@Override
@@ -21,25 +24,14 @@ public class MouseListener extends MouseAdapter {
 		Component pressed = e.getComponent().getComponentAt(e.getPoint());
 		
 		if (pressed instanceof DeckPile) {
-			deckPile();
+			event.deckPile(game);
+		}
+		if(pressed instanceof WastePile) {
+			event.wastePile(game);
 		}
 		
 		e.getComponent().repaint();
 	}
 	
-	public void deckPile() {
-		Deck hand = game.getDeckPile().getDeck();
-		Deck waste = game.getWastePile().getDeck();
-		if(!hand.isEmpty()) {
-			waste.push(hand.pop());
-			waste.top().flip();				
-		}
-		else {
-			int size = waste.getStack().size();
-			for (int i = 0; i < size; i++) {
-				hand.push(waste.pop());
-			}
-		}
-	}
 
 }

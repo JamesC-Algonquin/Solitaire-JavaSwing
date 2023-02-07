@@ -36,8 +36,14 @@ public class FoundationPile extends CardPile {
 		g.setColor(new Color(0, 115, 0));
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
 		
-		Image foundation =  new ImageIcon(FoundationPile.class.getResource("/solitaire/gui/cards/" + suit + ".png")).getImage();
-		g.drawImage(foundation, 0, 0, this.getWidth(), this.getHeight(), this);
+		if(deck.isEmpty()) {
+			Image foundation =  new ImageIcon(FoundationPile.class.getResource("/solitaire/gui/cards/" + suit + ".png")).getImage();
+			g.drawImage(foundation, 0, 0, this.getWidth(), this.getHeight(), this);
+		}
+		else {
+			g.drawImage(deck.top().getFace(), 0, 0, 90, 135, this );
+		}
+		
 	}
 	
 	

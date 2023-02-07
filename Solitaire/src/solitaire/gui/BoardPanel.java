@@ -6,7 +6,7 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 
 import solitaire.cards.Deck;
-import solitaire.eventlistener.MouseListener;
+import solitaire.listener.MouseListener;
 
 public class BoardPanel extends JPanel {
 
