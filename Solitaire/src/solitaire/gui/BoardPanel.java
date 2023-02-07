@@ -5,6 +5,8 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
+import solitaire.cards.Deck;
+
 public class BoardPanel extends JPanel {
 
 	/**
@@ -14,6 +16,7 @@ public class BoardPanel extends JPanel {
 	
 	private DeckPile deckPile;
 	private WastePile wastePile;
+	private FoundationPile[] foundationPiles;
 	
 	
 	public BoardPanel() {
@@ -25,6 +28,12 @@ public class BoardPanel extends JPanel {
 		
 		wastePile = new WastePile(170, 30);
 		add(wastePile);
+		
+		foundationPiles = new FoundationPile[4];
+		for(int i = 0; i < foundationPiles.length; i++) {
+			foundationPiles[i] = new FoundationPile(380 + 120 * i, 30, Deck.suits[i]);
+			add(foundationPiles[i]);
+		}
 	}
 	
 	@Override

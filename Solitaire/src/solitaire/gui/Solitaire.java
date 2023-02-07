@@ -22,11 +22,12 @@ public class Solitaire extends JFrame {
 		
 		//Default close operation ends program
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setMinimumSize(new Dimension(WIDTH, HEIGHT));
 		
 		//Create new board to fill window, set size
 		gameBoard = new BoardPanel();
-		gameBoard.setPreferredSize(new Dimension(WIDTH, HEIGHT));
-		
+		gameBoard.setSize(new Dimension(WIDTH, HEIGHT));
+				
 		//Add to window
 		add(gameBoard);
 		
