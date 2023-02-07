@@ -43,7 +43,12 @@ public class Deck {
 	}
 	
 	public Card top() {
-		return cards.peek();
+		if (!isEmpty()) {
+			return cards.peek();
+		}
+		else {
+			return null;
+		}
 	}
 	
 	

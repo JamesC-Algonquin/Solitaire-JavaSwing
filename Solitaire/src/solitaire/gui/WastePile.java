@@ -3,6 +3,8 @@ package solitaire.gui;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import solitaire.cards.Deck;
+
 public class WastePile extends CardPile{
 
 	/**
@@ -13,6 +15,7 @@ public class WastePile extends CardPile{
 	public WastePile(int x, int y) {
 		super(x, y);
 		super.setSize(90, 135);
+		deck = new Deck();
 	}
 	
 	@Override
@@ -23,6 +26,9 @@ public class WastePile extends CardPile{
 		g.setColor(new Color(0, 115, 0));
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
 		
+		if(!deck.isEmpty()) {
+			g.drawImage(deck.top().getFace(), 0, 0, this.getWidth(), this.getHeight(), this);
+		}
+		
 	}
-
 }

@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 
 import solitaire.cards.Deck;
+import solitaire.eventlistener.MouseListener;
 
 public class BoardPanel extends JPanel {
 
@@ -27,6 +28,10 @@ public class BoardPanel extends JPanel {
 		drawTable();
 		//Deal cards to tableau piles
 		dealCards();
+		
+		MouseListener listener = new MouseListener(this);
+		addMouseListener(listener);
+		addMouseMotionListener(listener);
 	}
 	
 	public void dealCards() {
@@ -71,4 +76,26 @@ public class BoardPanel extends JPanel {
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
 	}
 
+	
+	public DeckPile getDeckPile() {
+		return deckPile;
+	}
+	
+
+	public WastePile getWastePile() {
+		return wastePile;
+	}
+	
+	
+	public FoundationPile[] getFoundationPiles() {
+		return foundationPiles;
+	}
+
+
+	public TableauPile[] getTableauPiles() {
+		return tableauPiles;
+	}
+
+	
+	
 }

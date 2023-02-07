@@ -6,6 +6,8 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
+import solitaire.cards.Deck;
+
 public class FoundationPile extends CardPile {
 
 	/**
@@ -19,6 +21,7 @@ public class FoundationPile extends CardPile {
 		super(x, y);
 		super.setSize(90, 135);
 		suit = s;
+		deck = new Deck();
 	}
 	
 	public String getSuit() {
