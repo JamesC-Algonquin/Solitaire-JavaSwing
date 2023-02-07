@@ -8,14 +8,16 @@ public class Card {
 	
 	private int value;
 	private String suit;
+	private int colour;
 	private Image face;
 	private boolean faceUp;
 	private static Image back;
 	
-	public Card(int v, String s) {
+	public Card(int v, String s, int c) {
 		value = v;
 		suit = s;
 		faceUp = false;
+		colour = c;
 	}
 	
 	public boolean isFaceUp() {
@@ -32,6 +34,9 @@ public class Card {
 
 	public String getSuit() {
 		return suit;
+	}
+	public int getColour() {
+		return colour;
 	}
 	
 	//Default background image for cards

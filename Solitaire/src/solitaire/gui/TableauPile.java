@@ -31,6 +31,20 @@ public class TableauPile extends CardPile {
 		}
 	}
 
+	public Card getSelectedCard(int y) {
+		
+		int cardIndex = y/20;
+		
+		if (cardIndex < deck.getStack().toArray().length) {
+			Card selected = (Card) deck.getStack().toArray()[cardIndex];
+			if (selected.isFaceUp()) {
+				return selected;
+			}
+		}
+		
+		return deck.top();
+	}
+	
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);

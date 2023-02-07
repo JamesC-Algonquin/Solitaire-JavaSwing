@@ -16,7 +16,12 @@ public class Deck {
 	public void populate() {
 		for (String s : suits) {
 			for(int i = 1; i<=13; i++) {
-				cards.push(new Card(i, s));
+				if (s.equals("h") || s.equals("d")) {
+					cards.push(new Card(i, s, 1));
+				}
+				else {
+					cards.push(new Card(i, s, 2));
+				}
 			}
 		}
 	}
