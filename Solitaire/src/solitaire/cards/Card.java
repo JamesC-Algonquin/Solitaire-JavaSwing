@@ -8,6 +8,7 @@ public class Card {
 	
 	private int value;
 	private String suit;
+	private Image face;
 	private static Image back;
 	
 	public Card(int v, String s) {
@@ -29,6 +30,13 @@ public class Card {
 			back = new ImageIcon(Card.class.getResource("/solitaire/gui/cards/backcloud.png")).getImage();
 		}
 		return back;
+	}
+	
+	public Image getFace() {
+		if (face == null) {
+			face = new ImageIcon(Card.class.getResource("/solitaire/gui/cards/" + suit + value + ".png")).getImage();
+		}
+		return face;
 	}
 	
 

@@ -25,11 +25,22 @@ public class BoardPanel extends JPanel {
 		
 		//Draw table elements
 		drawTable();
+		//Deal cards to tableau piles
+		dealCards();
+	}
+	
+	public void dealCards() {
+		//deal Appropriate number of cards for each tableau
+		for (int i = 0; i < tableauPiles.length; i++ ) {
+			tableauPiles[i].dealCards(i + 1, deckPile.getDeck());
+		}
 	}
 	
 	public void drawTable() {
 		//Create and draw deck panel to board
 				deckPile = new DeckPile(30, 30);
+				//populate deck of cards
+				deckPile.getDeck().populate();
 				add(deckPile);
 				
 				wastePile = new WastePile(150, 30);
