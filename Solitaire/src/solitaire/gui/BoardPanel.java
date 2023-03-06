@@ -24,7 +24,6 @@ public class BoardPanel extends JPanel {
 	public BoardPanel() {
 		super.setLayout(null);
 		//Create table elements
-		newGame();
 		//Draw table elements
 		drawTable();
 		//Deal cards to tableau piles
@@ -33,6 +32,9 @@ public class BoardPanel extends JPanel {
 		MouseListener listener = new MouseListener(this);
 		addMouseListener(listener);
 		addMouseMotionListener(listener);
+		
+		PauseButton pauseButton = new PauseButton(840, 5);
+		add(pauseButton);
 	}
 	
 	public void dealCards() {
@@ -44,37 +46,41 @@ public class BoardPanel extends JPanel {
 	
 	public void drawTable() {
 		//Create and draw deck panel to board
-		//Run only once at initialization
+		//new deck panel
+		deckPile = new DeckPile(30, 60);
+		//populate deck of cards
+		deckPile.getDeck().populate();
+		//shuffle the deck
+		deckPile.getDeck().shuffle();
 		add(deckPile);
+		//New waste pile
+		wastePile = new WastePile(150, 60);
 		add(wastePile);
+		foundationPiles = new FoundationPile[4];
 		for(int i = 0; i < foundationPiles.length; i++) {
+			foundationPiles[i] = new FoundationPile(390 + 120 * i, 60, Deck.suits[i]);
 			add(foundationPiles[i]);
 		}
+		tableauPiles = new TableauPile[7];
 		for(int i = 0; i < tableauPiles.length; i++) {
+			tableauPiles[i] = new TableauPile(30 + 120 * i, 250);
 			add(tableauPiles[i]);	
 			}
 	}
 	
 	public void newGame() {
-		// Is used for initial game and all new games
-		//new deck panel
-		deckPile = new DeckPile(30, 30);
-		//populate deck of cards
-		deckPile.getDeck().populate();
-		//shuffle the deck
-		deckPile.getDeck().shuffle();
-		//New waste pile
-		wastePile = new WastePile(150, 30);
-		//New foundation piles
-		foundationPiles = new FoundationPile[4];
+		//Remove current set
+		remove(deckPile);
+		remove(wastePile);
 		for(int i = 0; i < foundationPiles.length; i++) {
-			foundationPiles[i] = new FoundationPile(390 + 120 * i, 30, Deck.suits[i]);
+			remove(foundationPiles[i]);
 		}
-		//New tableau piles
-		tableauPiles = new TableauPile[7];
 		for(int i = 0; i < tableauPiles.length; i++) {
-			tableauPiles[i] = new TableauPile(30 + 120 * i, 220);			
+			remove(tableauPiles[i]);	
 		}
+		//Create new set
+		drawTable();
+		dealCards();
 	}
 	
 	@Override
@@ -106,6 +112,8 @@ public class BoardPanel extends JPanel {
 		return tableauPiles;
 	}
 
-	
+	public void pauseMenu() {
+		new PauseMenu(this);
+	}
 	
 }
