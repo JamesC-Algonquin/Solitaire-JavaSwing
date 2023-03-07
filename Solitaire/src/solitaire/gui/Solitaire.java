@@ -15,8 +15,7 @@ public class Solitaire extends JFrame {
 	
 	//Window background/game board for cards
 	private BoardPanel gameBoard;
-	
-	
+		
 	//default constructor. 
 	public Solitaire() {
 		

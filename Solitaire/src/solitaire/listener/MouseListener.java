@@ -5,10 +5,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import solitaire.cards.Card;
-import solitaire.cards.Deck;
 import solitaire.gui.BoardPanel;
 import solitaire.gui.CardPile;
 import solitaire.gui.DeckPile;
+import solitaire.gui.PauseButton;
 import solitaire.gui.TableauPile;
 import solitaire.gui.WastePile;
 
@@ -40,10 +40,13 @@ public class MouseListener extends MouseAdapter {
 		}
 		if (pressed instanceof TableauPile) {
 			selectedPile = (TableauPile) pressed;
-			selectedCard = ((TableauPile) selectedPile).getSelectedCard(e.getY() - 220);
+			selectedCard = ((TableauPile) selectedPile).getSelectedCard(e.getY() - 250);
 			if (selectedCard == selectedPile.getDeck().top()) {
 				event.tableauToFoundation(game, selectedPile);
 			}
+		}
+		if (pressed instanceof PauseButton) {
+			game.pauseMenu();
 		}
 		
 		e.getComponent().repaint();
