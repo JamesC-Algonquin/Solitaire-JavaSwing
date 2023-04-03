@@ -24,7 +24,6 @@ public class EventListener {
 				}
 			}
 		}
-		
 	}
 
 	public void deckPile(BoardPanel game) {

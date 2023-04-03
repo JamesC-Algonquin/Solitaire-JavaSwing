@@ -36,14 +36,10 @@ public class MouseListener extends MouseAdapter {
 		if(pressed instanceof WastePile) {
 			selectedPile = game.getWastePile();
 			selectedCard = game.getWastePile().getDeck().top();
-			event.wastePile(game);
 		}
 		if (pressed instanceof TableauPile) {
 			selectedPile = (TableauPile) pressed;
 			selectedCard = ((TableauPile) selectedPile).getSelectedCard(e.getY() - 250);
-			if (selectedCard == selectedPile.getDeck().top()) {
-				event.tableauToFoundation(game, selectedPile);
-			}
 		}
 		if (pressed instanceof PauseButton) {
 			game.pauseMenu();
@@ -59,11 +55,19 @@ public class MouseListener extends MouseAdapter {
 			if (release instanceof TableauPile) {
 				event.wastePileToTableau(game, (TableauPile) release);
 			}
+			else if (release instanceof WastePile) {
+				event.wastePile(game);
+			}
 		}
 		
 		if (selectedCard != null && selectedPile instanceof TableauPile) {
 			Component release = e.getComponent().getComponentAt(e.getPoint());
-			if (release instanceof TableauPile) {
+			if (release == selectedPile) {
+				if (selectedCard == selectedPile.getDeck().top()) {
+					event.tableauToFoundation(game, selectedPile);
+				}
+			}
+			else if (release instanceof TableauPile) {
 				event.tableauToTableau(game, (TableauPile) selectedPile, (TableauPile) release, selectedCard);
 			}
 		}
