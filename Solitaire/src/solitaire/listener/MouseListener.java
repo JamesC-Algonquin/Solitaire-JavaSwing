@@ -30,12 +30,17 @@ public class MouseListener extends MouseAdapter {
 	public void mousePressed(MouseEvent e) {
 		Component pressed = e.getComponent().getComponentAt(e.getPoint());
 		
+		game.setMousePosition(e.getPoint());
+		
 		if (pressed instanceof DeckPile) {
 			event.deckPile(game);
 		}
 		if(pressed instanceof WastePile) {
 			selectedPile = game.getWastePile();
 			selectedCard = game.getWastePile().getDeck().top();
+			if (!selectedPile.getDeck().isEmpty()) {
+				game.setMouseImage(selectedCard.getFace());
+			}
 		}
 		if (pressed instanceof TableauPile) {
 			selectedPile = (TableauPile) pressed;
@@ -71,7 +76,7 @@ public class MouseListener extends MouseAdapter {
 				event.tableauToTableau(game, (TableauPile) selectedPile, (TableauPile) release, selectedCard);
 			}
 		}
-		
+		game.resetMouseImage();
 		e.getComponent().repaint();
 	}
 

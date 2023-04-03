@@ -2,10 +2,13 @@ package solitaire.gui;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Point;
 
 import javax.swing.JPanel;
 
 import solitaire.cards.Deck;
+import solitaire.listener.MouseDragListener;
 import solitaire.listener.MouseListener;
 
 public class BoardPanel extends JPanel {
@@ -20,6 +23,9 @@ public class BoardPanel extends JPanel {
 	private FoundationPile[] foundationPiles;
 	private TableauPile[] tableauPiles;
 	
+	Image mouseImage;
+	Point mousePosition;
+	
 	
 	public BoardPanel() {
 		super.setLayout(null);
@@ -31,7 +37,11 @@ public class BoardPanel extends JPanel {
 		
 		MouseListener listener = new MouseListener(this);
 		addMouseListener(listener);
-		addMouseMotionListener(listener);
+				
+		MouseDragListener dragListener = new MouseDragListener(this);
+		addMouseMotionListener(dragListener);
+		
+		mousePosition = new Point(0,0);
 		
 		PauseButton pauseButton = new PauseButton(840, 5);
 		add(pauseButton);
@@ -90,9 +100,39 @@ public class BoardPanel extends JPanel {
 		//Set color to dark green, adjust size to dimension parameters.
 		g.setColor(new Color(0, 153, 0));
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
+		
+	
+	}
+	//Drawn after components
+	@Override
+	public void paintChildren(Graphics g) {
+		super.paintChildren(g);
+		
+		//Draw Mouse drag image if exists
+		if (mouseImage != null) {
+			g.drawImage(mouseImage, (int)mousePosition.getX() - 45, (int)mousePosition.getY() - 67, 90, 135, this);
+		}
+	}
+	
+	public Point getMousePosition() {
+		return mousePosition;
+	}
+	public void setMousePosition(Point p) {
+		mousePosition = p;
+	}
+	
+	public void translateMousePosition(int x, int y) {
+		mousePosition.translate(x, y);
+	}
+	
+	public void setMouseImage(Image i) {
+		mouseImage = i;
+	}
+	
+	public void resetMouseImage() {
+		mouseImage = null;
 	}
 
-	
 	public DeckPile getDeckPile() {
 		return deckPile;
 	}
