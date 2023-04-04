@@ -24,7 +24,9 @@ public class BoardPanel extends JPanel{
 	private FoundationPile[] foundationPiles;
 	private TableauPile[] tableauPiles;
 	//private BoardPanel quickSave;
-	ScoreLabel score;
+	private ScoreLabel score;
+	
+	private boolean klondike;
 	
 	Stack<Image> mouseImage = new Stack<>();
 	Point mousePosition;
@@ -52,8 +54,10 @@ public class BoardPanel extends JPanel{
 		//UndoButton undoButton = new UndoButton(790, 5);
 		//add(undoButton);
 		
-		score = new ScoreLabel(420, 2);
+		score = new ScoreLabel(400, 2);
 		add(score);
+		
+		klondike = false;
 		
 	}
 	
@@ -179,5 +183,9 @@ public class BoardPanel extends JPanel{
 	
 	public ScoreLabel getScore() {
 		return score;
+	}
+	
+	public boolean getGamemode() {
+		return klondike;
 	}
 }
