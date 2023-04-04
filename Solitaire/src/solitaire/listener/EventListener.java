@@ -17,11 +17,14 @@ public class EventListener {
 		for (FoundationPile foundation : game.getFoundationPiles()) {
 			if (!waste.isEmpty() && foundation.getSuit() == waste.top().getSuit()) {
 				if(foundation.getDeck().isEmpty() && waste.top().getValue() == 1) {
-					foundation.getDeck().push(waste.pop());
+					
+					foundation.getDeck().push(waste.pop());					
 				}
 				else if(!foundation.getDeck().isEmpty() && foundation.getDeck().top().getValue() == waste.top().getValue() - 1) {
+					
 					foundation.getDeck().push(waste.pop());
 				}
+				
 			}
 		}
 	}
@@ -48,12 +51,13 @@ public class EventListener {
 		Deck tableau = destination.getDeck();
 		
 		if (tableau.isEmpty() && waste.top().getValue() == 13) {
+			
 			tableau.push(waste.pop());
 		}
 		else if (!tableau.isEmpty() 
 				&& waste.top().getColour() != tableau.top().getColour() 
 				&& waste.top().getValue() == tableau.top().getValue() -1) {
-			
+		
 			tableau.push(waste.pop());
 		}
 		
@@ -64,6 +68,7 @@ public class EventListener {
 		Deck destDeck = destination.getDeck();
 		
 		if (destDeck.isEmpty() && selected.getValue() == 13) {
+			
 			Stack<Card> tempCards = new Stack<Card>();
 			//get Cards
 			int size = sourceDeck.getStack().search(selected);
@@ -77,6 +82,7 @@ public class EventListener {
 				destDeck.push(tempCards.pop());
 			}
 			sourceDeck.top().flip();
+			
 		}
 		else if (!destDeck.isEmpty()
 				&& selected.getColour() != destDeck.top().getColour()
@@ -107,9 +113,12 @@ public class EventListener {
 		for (FoundationPile foundation : game.getFoundationPiles()) {
 			if (!tableau.isEmpty() && foundation.getSuit() == tableau.top().getSuit()) {
 				if(foundation.getDeck().isEmpty() && tableau.top().getValue() == 1) {
+					
+					
 					foundation.getDeck().push(tableau.pop());
 				}
 				else if(!foundation.getDeck().isEmpty() && foundation.getDeck().top().getValue() == tableau.top().getValue() - 1) {
+					
 					foundation.getDeck().push(tableau.pop());
 				}
 			}

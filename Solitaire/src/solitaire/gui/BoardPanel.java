@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
+import java.util.Stack;
 
 import javax.swing.JPanel;
 
@@ -11,7 +12,7 @@ import solitaire.cards.Deck;
 import solitaire.listener.MouseDragListener;
 import solitaire.listener.MouseListener;
 
-public class BoardPanel extends JPanel {
+public class BoardPanel extends JPanel implements Cloneable{
 
 	/**
 	 * 
@@ -22,8 +23,9 @@ public class BoardPanel extends JPanel {
 	private WastePile wastePile;
 	private FoundationPile[] foundationPiles;
 	private TableauPile[] tableauPiles;
+	//private BoardPanel quickSave;
 	
-	Image mouseImage;
+	Stack<Image> mouseImage = new Stack<>();
 	Point mousePosition;
 	
 	
@@ -45,6 +47,10 @@ public class BoardPanel extends JPanel {
 		
 		PauseButton pauseButton = new PauseButton(840, 5);
 		add(pauseButton);
+		
+		//UndoButton undoButton = new UndoButton(790, 5);
+		//add(undoButton);
+		
 	}
 	
 	public void dealCards() {
@@ -110,8 +116,19 @@ public class BoardPanel extends JPanel {
 		
 		//Draw Mouse drag image if exists
 		if (mouseImage != null) {
-			g.drawImage(mouseImage, (int)mousePosition.getX() - 45, (int)mousePosition.getY() - 67, 90, 135, this);
+			int offset = 0;
+			for(Image i : mouseImage) {
+				g.drawImage(i, (int)mousePosition.getX() - 45, (int)mousePosition.getY() - 67 + offset, 90, 135, this);
+				offset = offset + 20;
+			}
 		}
+	}
+	public void quickSaveState() {
+		
+	}
+	
+	public void quickLoadState() {
+		
 	}
 	
 	public Point getMousePosition() {
@@ -125,12 +142,12 @@ public class BoardPanel extends JPanel {
 		mousePosition.translate(x, y);
 	}
 	
-	public void setMouseImage(Image i) {
-		mouseImage = i;
+	public void addMouseImage(Image i) {
+		mouseImage.push(i);
 	}
 	
 	public void resetMouseImage() {
-		mouseImage = null;
+		mouseImage = new Stack<Image>();
 	}
 
 	public DeckPile getDeckPile() {
