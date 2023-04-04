@@ -17,12 +17,12 @@ public class EventListener {
 		for (FoundationPile foundation : game.getFoundationPiles()) {
 			if (!waste.isEmpty() && foundation.getSuit() == waste.top().getSuit()) {
 				if(foundation.getDeck().isEmpty() && waste.top().getValue() == 1) {
-					
-					foundation.getDeck().push(waste.pop());					
+					foundation.getDeck().push(waste.pop());
+					game.getScore().incrementScore(15);
 				}
 				else if(!foundation.getDeck().isEmpty() && foundation.getDeck().top().getValue() == waste.top().getValue() - 1) {
-					
 					foundation.getDeck().push(waste.pop());
+					game.getScore().incrementScore(15);
 				}
 				
 			}
@@ -43,6 +43,7 @@ public class EventListener {
 			for (int i = 0; i < size; i++) {
 				hand.push(waste.pop());
 			}
+			game.getScore().incrementScore(-25);
 		}
 	}
 
@@ -53,12 +54,14 @@ public class EventListener {
 		if (tableau.isEmpty() && waste.top().getValue() == 13) {
 			
 			tableau.push(waste.pop());
+			game.getScore().incrementScore(5);
 		}
 		else if (!tableau.isEmpty() 
 				&& waste.top().getColour() != tableau.top().getColour() 
 				&& waste.top().getValue() == tableau.top().getValue() -1) {
 		
 			tableau.push(waste.pop());
+			game.getScore().incrementScore(5);
 		}
 		
 	}
@@ -82,6 +85,7 @@ public class EventListener {
 				destDeck.push(tempCards.pop());
 			}
 			sourceDeck.top().flip();
+			game.getScore().incrementScore(5);
 			
 		}
 		else if (!destDeck.isEmpty()
@@ -102,6 +106,7 @@ public class EventListener {
 			}
 			if (!sourceDeck.isEmpty() && !sourceDeck.top().isFaceUp()) {
 				sourceDeck.top().flip();
+				game.getScore().incrementScore(5);
 			}
 		}
 		
@@ -113,19 +118,20 @@ public class EventListener {
 		for (FoundationPile foundation : game.getFoundationPiles()) {
 			if (!tableau.isEmpty() && foundation.getSuit() == tableau.top().getSuit()) {
 				if(foundation.getDeck().isEmpty() && tableau.top().getValue() == 1) {
-					
-					
 					foundation.getDeck().push(tableau.pop());
+					game.getScore().incrementScore(15);
 				}
 				else if(!foundation.getDeck().isEmpty() && foundation.getDeck().top().getValue() == tableau.top().getValue() - 1) {
 					
 					foundation.getDeck().push(tableau.pop());
+					game.getScore().incrementScore(15);
 				}
 			}
 		}
 		
 		if (!tableau.isEmpty() && !tableau.top().isFaceUp()) {
 			tableau.top().flip();
+			game.getScore().incrementScore(5);
 		}
 	}
 

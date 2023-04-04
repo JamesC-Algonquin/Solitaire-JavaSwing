@@ -12,7 +12,7 @@ import solitaire.cards.Deck;
 import solitaire.listener.MouseDragListener;
 import solitaire.listener.MouseListener;
 
-public class BoardPanel extends JPanel implements Cloneable{
+public class BoardPanel extends JPanel{
 
 	/**
 	 * 
@@ -24,6 +24,7 @@ public class BoardPanel extends JPanel implements Cloneable{
 	private FoundationPile[] foundationPiles;
 	private TableauPile[] tableauPiles;
 	//private BoardPanel quickSave;
+	ScoreLabel score;
 	
 	Stack<Image> mouseImage = new Stack<>();
 	Point mousePosition;
@@ -50,6 +51,9 @@ public class BoardPanel extends JPanel implements Cloneable{
 		
 		//UndoButton undoButton = new UndoButton(790, 5);
 		//add(undoButton);
+		
+		score = new ScoreLabel(420, 2);
+		add(score);
 		
 	}
 	
@@ -173,4 +177,7 @@ public class BoardPanel extends JPanel implements Cloneable{
 		new PauseMenu(this);
 	}
 	
+	public ScoreLabel getScore() {
+		return score;
+	}
 }
