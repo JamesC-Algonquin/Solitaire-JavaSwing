@@ -2,13 +2,17 @@ package solitaire.gui;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Point;
+import java.util.Stack;
 
 import javax.swing.JPanel;
 
 import solitaire.cards.Deck;
+import solitaire.listener.MouseDragListener;
 import solitaire.listener.MouseListener;
 
-public class BoardPanel extends JPanel {
+public class BoardPanel extends JPanel{
 
 	/**
 	 * 
@@ -19,6 +23,13 @@ public class BoardPanel extends JPanel {
 	private WastePile wastePile;
 	private FoundationPile[] foundationPiles;
 	private TableauPile[] tableauPiles;
+	//private BoardPanel quickSave;
+	private ScoreLabel score;
+	
+	private boolean klondike;
+	
+	Stack<Image> mouseImage = new Stack<>();
+	Point mousePosition;
 	
 	
 	public BoardPanel() {
@@ -31,10 +42,23 @@ public class BoardPanel extends JPanel {
 		
 		MouseListener listener = new MouseListener(this);
 		addMouseListener(listener);
-		addMouseMotionListener(listener);
+				
+		MouseDragListener dragListener = new MouseDragListener(this);
+		addMouseMotionListener(dragListener);
+		
+		mousePosition = new Point(0,0);
 		
 		PauseButton pauseButton = new PauseButton(840, 5);
 		add(pauseButton);
+		
+		//UndoButton undoButton = new UndoButton(790, 5);
+		//add(undoButton);
+		
+		score = new ScoreLabel(400, 2);
+		add(score);
+		
+		klondike = false;
+		
 	}
 	
 	public void dealCards() {
@@ -90,9 +114,50 @@ public class BoardPanel extends JPanel {
 		//Set color to dark green, adjust size to dimension parameters.
 		g.setColor(new Color(0, 153, 0));
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
+		
+	
+	}
+	//Drawn after components
+	@Override
+	public void paintChildren(Graphics g) {
+		super.paintChildren(g);
+		
+		//Draw Mouse drag image if exists
+		if (mouseImage != null) {
+			int offset = 0;
+			for(Image i : mouseImage) {
+				g.drawImage(i, (int)mousePosition.getX() - 45, (int)mousePosition.getY() - 67 + offset, 90, 135, this);
+				offset = offset + 20;
+			}
+		}
+	}
+	public void quickSaveState() {
+		
+	}
+	
+	public void quickLoadState() {
+		
+	}
+	
+	public Point getMousePosition() {
+		return mousePosition;
+	}
+	public void setMousePosition(Point p) {
+		mousePosition = p;
+	}
+	
+	public void translateMousePosition(int x, int y) {
+		mousePosition.translate(x, y);
+	}
+	
+	public void addMouseImage(Image i) {
+		mouseImage.push(i);
+	}
+	
+	public void resetMouseImage() {
+		mouseImage = new Stack<Image>();
 	}
 
-	
 	public DeckPile getDeckPile() {
 		return deckPile;
 	}
@@ -116,4 +181,11 @@ public class BoardPanel extends JPanel {
 		new PauseMenu(this);
 	}
 	
+	public ScoreLabel getScore() {
+		return score;
+	}
+	
+	public boolean getGamemode() {
+		return klondike;
+	}
 }
