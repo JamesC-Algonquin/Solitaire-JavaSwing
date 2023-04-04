@@ -29,6 +29,11 @@ public class ScoreLabel extends JLabel{
 		setText();
 	}
 	
+	public void resetScore() {
+		score = 0;
+		setText();
+	}
+	
 	public void setText() {
 		super.setText("Score: " + Integer.toString(score));
 	}

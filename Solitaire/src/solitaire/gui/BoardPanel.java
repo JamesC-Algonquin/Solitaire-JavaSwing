@@ -105,6 +105,8 @@ public class BoardPanel extends JPanel{
 		//Create new set
 		drawTable();
 		dealCards();
+		
+		score.resetScore();
 	}
 	
 	@Override
