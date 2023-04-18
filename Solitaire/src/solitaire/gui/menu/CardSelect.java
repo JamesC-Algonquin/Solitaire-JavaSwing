@@ -29,7 +29,7 @@ public class CardSelect {
 		JPanel cardMenu = cardMenuPanel();
 		
 		JOptionPane jop = new JOptionPane();
-		dialog = jop.createDialog("Pause Menu");
+		dialog = jop.createDialog("Select Background Image");
 		
 		dialog.setSize(360, 400);
 		dialog.setContentPane(cardMenu);

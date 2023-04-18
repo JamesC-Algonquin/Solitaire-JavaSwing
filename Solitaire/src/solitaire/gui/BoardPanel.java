@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import solitaire.cards.Deck;
 import solitaire.gui.menu.NewGameMenu;
 import solitaire.gui.menu.PauseMenu;
+import solitaire.gui.menu.WinDialog;
 import solitaire.listener.MouseDragListener;
 import solitaire.listener.MouseListener;
 
@@ -52,14 +53,11 @@ public class BoardPanel extends JPanel{
 		PauseButton pauseButton = new PauseButton(840, 5);
 		add(pauseButton);
 		
-		//UndoButton undoButton = new UndoButton(790, 5);
-		//add(undoButton);
-		
 		score = new ScoreLabel(400, 2);
 		add(score);
 		
 		klondike = false;
-		
+				
 	}
 	
 	public void dealCards() {
@@ -188,5 +186,16 @@ public class BoardPanel extends JPanel{
 	
 	public void pauseMenu() {
 		new PauseMenu(this);
+	}
+	
+	public void winMenu() {
+		String mode;
+		if(klondike) {
+			mode = "Klondike";
+		}
+		else {
+			mode = "Normal";
+		}
+		new WinDialog(this, mode, score.getScore());
 	}
 }

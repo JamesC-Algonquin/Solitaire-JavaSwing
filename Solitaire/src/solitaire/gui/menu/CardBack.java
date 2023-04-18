@@ -29,6 +29,7 @@ public class CardBack extends JPanel{
 	
 	@Override
 	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
 		Image image = new ImageIcon(Card.class.getResource(resource)).getImage();
 		g.drawImage(image, 0, 0, 90, 135, this);
 	}

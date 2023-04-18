@@ -27,6 +27,19 @@ public class EventListener {
 				
 			}
 		}
+		
+		for (FoundationPile foundation : game.getFoundationPiles()) {
+			if(!foundation.getDeck().isEmpty()) {
+				int top = foundation.getDeck().top().getValue();
+				if(top != 13) {
+					return;
+				}
+			}
+			else {
+				return;
+			}
+		}
+		game.winMenu();
 	}
 
 	public void deckPile(BoardPanel game) {
@@ -153,6 +166,19 @@ public class EventListener {
 			tableau.top().flip();
 			game.getScore().incrementScore(5);
 		}
+		
+		for (FoundationPile foundation : game.getFoundationPiles()) {
+			if(!foundation.getDeck().isEmpty()) {
+				int top = foundation.getDeck().top().getValue();
+				if(top != 13) {
+					return;
+				}
+			}
+			else {
+				return;
+			}
+		}
+		game.winMenu();
 	}
 
 
