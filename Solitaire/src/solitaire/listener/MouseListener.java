@@ -35,7 +35,12 @@ public class MouseListener extends MouseAdapter {
 		game.setMousePosition(e.getPoint());
 		
 		if (pressed instanceof DeckPile) {
-			event.deckPile(game);
+			if(game.getGamemode()) {
+				event.klondikeDeckPile(game);
+			}
+			else {
+				event.deckPile(game);
+			}
 		}
 		if(pressed instanceof WastePile) {
 			selectedPile = game.getWastePile();

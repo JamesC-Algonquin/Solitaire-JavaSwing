@@ -11,6 +11,7 @@ public class DeckPile extends CardPile {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 
 	public DeckPile(int x, int y) {
 		super(x, y);
@@ -30,9 +31,8 @@ public class DeckPile extends CardPile {
 		
 		if(!deck.isEmpty()) {
 			g.drawImage(Card.getBackground(), 0, 0, this.getWidth(), this.getHeight(), this);
+			
 		}
 	}
-	
-	
 
 }

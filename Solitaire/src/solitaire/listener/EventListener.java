@@ -35,7 +35,27 @@ public class EventListener {
 		if(!hand.isEmpty()) {
 			waste.push(hand.pop());
 			if(!waste.top().isFaceUp()) {
-				waste.top().flip();	
+				waste.top().flip();
+			}
+		}
+		else {
+			int size = waste.getStack().size();
+			for (int i = 0; i < size; i++) {
+				hand.push(waste.pop());
+			}
+			game.getScore().incrementScore(-25);
+		}
+	}
+	
+	public void klondikeDeckPile(BoardPanel game) {
+		Deck hand = game.getDeckPile().getDeck();
+		Deck waste = game.getWastePile().getDeck();
+		if(!hand.isEmpty()) {
+			for (int i = 0; i < hand.getStack().size() && i < 3; i++) {
+				waste.push(hand.pop());
+				if(!waste.top().isFaceUp()) {
+					waste.top().flip();	
+				}
 			}
 		}
 		else {

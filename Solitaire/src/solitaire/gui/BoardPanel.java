@@ -78,7 +78,7 @@ public class BoardPanel extends JPanel{
 		deckPile.getDeck().shuffle();
 		add(deckPile);
 		//New waste pile
-		wastePile = new WastePile(150, 60);
+		wastePile = new WastePile(150, 60, klondike);
 		add(wastePile);
 		foundationPiles = new FoundationPile[4];
 		for(int i = 0; i < foundationPiles.length; i++) {
@@ -92,7 +92,7 @@ public class BoardPanel extends JPanel{
 			}
 	}
 	
-	public void newGame() {
+	public void newGame(boolean mode) {
 		//Remove current set
 		remove(deckPile);
 		remove(wastePile);
@@ -102,6 +102,9 @@ public class BoardPanel extends JPanel{
 		for(int i = 0; i < tableauPiles.length; i++) {
 			remove(tableauPiles[i]);	
 		}
+		
+		klondike = mode;
+		
 		//Create new set
 		drawTable();
 		dealCards();
