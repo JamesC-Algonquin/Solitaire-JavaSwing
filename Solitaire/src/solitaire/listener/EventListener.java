@@ -117,7 +117,9 @@ public class EventListener {
 			for (int i = 0; i < size; i++ ) {
 				destDeck.push(tempCards.pop());
 			}
-			sourceDeck.top().flip();
+			if(!sourceDeck.isEmpty()) {
+				sourceDeck.top().flip();
+			}
 			game.getScore().incrementScore(5);
 			
 		}
