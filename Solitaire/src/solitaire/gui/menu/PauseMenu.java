@@ -1,4 +1,4 @@
-package solitaire.gui;
+package solitaire.gui.menu;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -8,6 +8,8 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
+import solitaire.gui.BoardPanel;
 
 public class PauseMenu {
 	

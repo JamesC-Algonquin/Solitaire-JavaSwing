@@ -9,6 +9,8 @@ import java.util.Stack;
 import javax.swing.JPanel;
 
 import solitaire.cards.Deck;
+import solitaire.gui.menu.NewGameMenu;
+import solitaire.gui.menu.PauseMenu;
 import solitaire.listener.MouseDragListener;
 import solitaire.listener.MouseListener;
 

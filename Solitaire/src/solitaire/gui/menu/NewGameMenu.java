@@ -1,6 +1,8 @@
-package solitaire.gui;
+package solitaire.gui.menu;
 
 import javax.swing.JOptionPane;
+
+import solitaire.gui.BoardPanel;
 
 public class NewGameMenu extends JOptionPane {
 

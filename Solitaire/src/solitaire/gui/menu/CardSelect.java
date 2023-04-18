@@ -1,4 +1,4 @@
-package solitaire.gui;
+package solitaire.gui.menu;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import solitaire.cards.Card;
+import solitaire.gui.BoardPanel;
 
 
 public class CardSelect {
