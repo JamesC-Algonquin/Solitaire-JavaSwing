@@ -38,6 +38,10 @@ public class ScoreLabel extends JLabel{
 		super.setText("Score: " + Integer.toString(score));
 	}
 	
+	public int getScore() {
+		return score;
+	}
+	
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);

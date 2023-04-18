@@ -11,7 +11,6 @@ import solitaire.gui.CardPile;
 import solitaire.gui.DeckPile;
 import solitaire.gui.PauseButton;
 import solitaire.gui.TableauPile;
-import solitaire.gui.UndoButton;
 import solitaire.gui.WastePile;
 
 public class MouseListener extends MouseAdapter {
@@ -35,7 +34,12 @@ public class MouseListener extends MouseAdapter {
 		game.setMousePosition(e.getPoint());
 		
 		if (pressed instanceof DeckPile) {
-			event.deckPile(game);
+			if(game.getGamemode()) {
+				event.klondikeDeckPile(game);
+			}
+			else {
+				event.deckPile(game);
+			}
 		}
 		if(pressed instanceof WastePile) {
 			selectedPile = game.getWastePile();
@@ -84,9 +88,6 @@ public class MouseListener extends MouseAdapter {
 			else if (release instanceof TableauPile) {
 				event.tableauToTableau(game, (TableauPile) selectedPile, (TableauPile) release, selectedCard);
 			}
-		}
-		if (release instanceof UndoButton) {
-			game.quickLoadState();
 		}
 		game.resetMouseImage();
 		e.getComponent().repaint();

@@ -27,6 +27,19 @@ public class EventListener {
 				
 			}
 		}
+		
+		for (FoundationPile foundation : game.getFoundationPiles()) {
+			if(!foundation.getDeck().isEmpty()) {
+				int top = foundation.getDeck().top().getValue();
+				if(top != 13) {
+					return;
+				}
+			}
+			else {
+				return;
+			}
+		}
+		game.winMenu();
 	}
 
 	public void deckPile(BoardPanel game) {
@@ -35,7 +48,27 @@ public class EventListener {
 		if(!hand.isEmpty()) {
 			waste.push(hand.pop());
 			if(!waste.top().isFaceUp()) {
-				waste.top().flip();	
+				waste.top().flip();
+			}
+		}
+		else {
+			int size = waste.getStack().size();
+			for (int i = 0; i < size; i++) {
+				hand.push(waste.pop());
+			}
+			game.getScore().incrementScore(-25);
+		}
+	}
+	
+	public void klondikeDeckPile(BoardPanel game) {
+		Deck hand = game.getDeckPile().getDeck();
+		Deck waste = game.getWastePile().getDeck();
+		if(!hand.isEmpty()) {
+			for (int i = 0; i < hand.getStack().size() && i < 3; i++) {
+				waste.push(hand.pop());
+				if(!waste.top().isFaceUp()) {
+					waste.top().flip();	
+				}
 			}
 		}
 		else {
@@ -84,7 +117,9 @@ public class EventListener {
 			for (int i = 0; i < size; i++ ) {
 				destDeck.push(tempCards.pop());
 			}
-			sourceDeck.top().flip();
+			if(!sourceDeck.isEmpty()) {
+				sourceDeck.top().flip();
+			}
 			game.getScore().incrementScore(5);
 			
 		}
@@ -133,6 +168,19 @@ public class EventListener {
 			tableau.top().flip();
 			game.getScore().incrementScore(5);
 		}
+		
+		for (FoundationPile foundation : game.getFoundationPiles()) {
+			if(!foundation.getDeck().isEmpty()) {
+				int top = foundation.getDeck().top().getValue();
+				if(top != 13) {
+					return;
+				}
+			}
+			else {
+				return;
+			}
+		}
+		game.winMenu();
 	}
 
 

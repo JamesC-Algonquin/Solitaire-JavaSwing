@@ -12,6 +12,7 @@ public class TableauPile extends CardPile {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 
 	public TableauPile(int x, int y) {
 		super(x, y);

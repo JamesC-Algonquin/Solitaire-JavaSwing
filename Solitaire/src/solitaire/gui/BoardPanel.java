@@ -9,6 +9,9 @@ import java.util.Stack;
 import javax.swing.JPanel;
 
 import solitaire.cards.Deck;
+import solitaire.gui.menu.NewGameMenu;
+import solitaire.gui.menu.PauseMenu;
+import solitaire.gui.menu.WinDialog;
 import solitaire.listener.MouseDragListener;
 import solitaire.listener.MouseListener;
 
@@ -23,7 +26,6 @@ public class BoardPanel extends JPanel{
 	private WastePile wastePile;
 	private FoundationPile[] foundationPiles;
 	private TableauPile[] tableauPiles;
-	//private BoardPanel quickSave;
 	private ScoreLabel score;
 	
 	private boolean klondike;
@@ -51,14 +53,11 @@ public class BoardPanel extends JPanel{
 		PauseButton pauseButton = new PauseButton(840, 5);
 		add(pauseButton);
 		
-		//UndoButton undoButton = new UndoButton(790, 5);
-		//add(undoButton);
-		
 		score = new ScoreLabel(400, 2);
 		add(score);
 		
 		klondike = false;
-		
+				
 	}
 	
 	public void dealCards() {
@@ -78,7 +77,7 @@ public class BoardPanel extends JPanel{
 		deckPile.getDeck().shuffle();
 		add(deckPile);
 		//New waste pile
-		wastePile = new WastePile(150, 60);
+		wastePile = new WastePile(150, 60, klondike);
 		add(wastePile);
 		foundationPiles = new FoundationPile[4];
 		for(int i = 0; i < foundationPiles.length; i++) {
@@ -92,7 +91,7 @@ public class BoardPanel extends JPanel{
 			}
 	}
 	
-	public void newGame() {
+	public void newGame(boolean mode) {
 		//Remove current set
 		remove(deckPile);
 		remove(wastePile);
@@ -102,6 +101,9 @@ public class BoardPanel extends JPanel{
 		for(int i = 0; i < tableauPiles.length; i++) {
 			remove(tableauPiles[i]);	
 		}
+		
+		klondike = mode;
+		
 		//Create new set
 		drawTable();
 		dealCards();
@@ -133,17 +135,11 @@ public class BoardPanel extends JPanel{
 			}
 		}
 	}
-	public void quickSaveState() {
-		
-	}
-	
-	public void quickLoadState() {
-		
-	}
-	
+
 	public Point getMousePosition() {
 		return mousePosition;
 	}
+	
 	public void setMousePosition(Point p) {
 		mousePosition = p;
 	}
@@ -164,23 +160,20 @@ public class BoardPanel extends JPanel{
 		return deckPile;
 	}
 	
-
 	public WastePile getWastePile() {
 		return wastePile;
 	}
-	
 	
 	public FoundationPile[] getFoundationPiles() {
 		return foundationPiles;
 	}
 
-
 	public TableauPile[] getTableauPiles() {
 		return tableauPiles;
 	}
 
-	public void pauseMenu() {
-		new PauseMenu(this);
+	public void newGameMenu() {
+		new NewGameMenu(this);
 	}
 	
 	public ScoreLabel getScore() {
@@ -189,5 +182,20 @@ public class BoardPanel extends JPanel{
 	
 	public boolean getGamemode() {
 		return klondike;
+	}
+	
+	public void pauseMenu() {
+		new PauseMenu(this);
+	}
+	
+	public void winMenu() {
+		String mode;
+		if(klondike) {
+			mode = "Klondike";
+		}
+		else {
+			mode = "Normal";
+		}
+		new WinDialog(this, mode, score.getScore());
 	}
 }
