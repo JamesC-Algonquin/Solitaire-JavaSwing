@@ -11,7 +11,6 @@ import solitaire.gui.CardPile;
 import solitaire.gui.DeckPile;
 import solitaire.gui.PauseButton;
 import solitaire.gui.TableauPile;
-import solitaire.gui.UndoButton;
 import solitaire.gui.WastePile;
 
 public class MouseListener extends MouseAdapter {
@@ -89,9 +88,6 @@ public class MouseListener extends MouseAdapter {
 			else if (release instanceof TableauPile) {
 				event.tableauToTableau(game, (TableauPile) selectedPile, (TableauPile) release, selectedCard);
 			}
-		}
-		if (release instanceof UndoButton) {
-			game.quickLoadState();
 		}
 		game.resetMouseImage();
 		e.getComponent().repaint();

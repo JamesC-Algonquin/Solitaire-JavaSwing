@@ -23,7 +23,6 @@ public class BoardPanel extends JPanel{
 	private WastePile wastePile;
 	private FoundationPile[] foundationPiles;
 	private TableauPile[] tableauPiles;
-	//private BoardPanel quickSave;
 	private ScoreLabel score;
 	
 	private boolean klondike;
@@ -136,17 +135,11 @@ public class BoardPanel extends JPanel{
 			}
 		}
 	}
-	public void quickSaveState() {
-		
-	}
-	
-	public void quickLoadState() {
-		
-	}
-	
+
 	public Point getMousePosition() {
 		return mousePosition;
 	}
+	
 	public void setMousePosition(Point p) {
 		mousePosition = p;
 	}
@@ -167,23 +160,20 @@ public class BoardPanel extends JPanel{
 		return deckPile;
 	}
 	
-
 	public WastePile getWastePile() {
 		return wastePile;
 	}
-	
 	
 	public FoundationPile[] getFoundationPiles() {
 		return foundationPiles;
 	}
 
-
 	public TableauPile[] getTableauPiles() {
 		return tableauPiles;
 	}
 
-	public void pauseMenu() {
-		new PauseMenu(this);
+	public void newGameMenu() {
+		new NewGameMenu(this);
 	}
 	
 	public ScoreLabel getScore() {
@@ -192,5 +182,9 @@ public class BoardPanel extends JPanel{
 	
 	public boolean getGamemode() {
 		return klondike;
+	}
+	
+	public void pauseMenu() {
+		new PauseMenu(this);
 	}
 }
